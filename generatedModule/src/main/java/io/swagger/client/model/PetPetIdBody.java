@@ -22,51 +22,51 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
- * Category
+ * PetPetIdBody
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T20:11:27.769653900+03:00[Europe/Moscow]")
-public class Category {
-  @SerializedName("id")
-  private Long id = null;
-
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T20:11:29.491400500+03:00[Europe/Moscow]")
+public class PetPetIdBody {
   @SerializedName("name")
   private String name = null;
 
-  public Category id(Long id) {
-    this.id = id;
-    return this;
-  }
+  @SerializedName("status")
+  private String status = null;
 
-   /**
-   * Get id
-   * @return id
-  **/
-  @Schema(description = "")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Category name(String name) {
+  public PetPetIdBody name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * Get name
+   * Updated name of the pet
    * @return name
   **/
-  @Schema(description = "")
+  @Schema(description = "Updated name of the pet")
   public String getName() {
     return name;
   }
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public PetPetIdBody status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Updated status of the pet
+   * @return status
+  **/
+  @Schema(description = "Updated status of the pet")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 
@@ -78,24 +78,24 @@ public class Category {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Category category = (Category) o;
-    return Objects.equals(this.id, category.id) &&
-        Objects.equals(this.name, category.name);
+    PetPetIdBody petPetIdBody = (PetPetIdBody) o;
+    return Objects.equals(this.name, petPetIdBody.name) &&
+        Objects.equals(this.status, petPetIdBody.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(name, status);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Category {\n");
+    sb.append("class PetPetIdBody {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -5,8 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>swwager2Modules</artifactId>
+    <artifactId>swagger1Module</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>generatedModule</module>
+        <module>testModule</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -23,6 +28,8 @@
         <okhttp.logging-interceptor.version>4.12.0</okhttp.logging-interceptor.version>
         <oltu.oauth2.client.version>1.0.2</oltu.oauth2.client.version>
         <retrofit2.version>2.9.0</retrofit2.version>
+        <retrofit.converter-gson.version>2.9.0</retrofit.converter-gson.version>
+        <retrofit.converter-scalars.version>2.9.0</retrofit.converter-scalars.version>
         <swagger.codegen.version>3.0.29</swagger.codegen.version>
         <swagger-annotations.version>2.2.9</swagger-annotations.version>
         <threetenbp.version>1.5.1</threetenbp.version>
@@ -85,12 +92,12 @@
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
             <artifactId>converter-gson</artifactId>
-            <version>2.9.0</version>
+            <version>${retrofit.converter-gson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
             <artifactId>converter-scalars</artifactId>
-            <version>2.9.0</version>
+            <version>${retrofit.converter-scalars.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.oltu.oauth2</groupId>
