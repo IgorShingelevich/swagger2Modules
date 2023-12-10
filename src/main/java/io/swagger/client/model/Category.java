@@ -22,18 +22,18 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
- * Tag
+ * Category
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T17:52:51.549977600+03:00[Europe/Moscow]")
-public class Tag {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T19:29:48.859641800+03:00[Europe/Moscow]")
+public class Category {
   @SerializedName("id")
   private Long id = null;
 
   @SerializedName("name")
   private String name = null;
 
-  public Tag id(Long id) {
+  public Category id(Long id) {
     this.id = id;
     return this;
   }
@@ -51,7 +51,7 @@ public class Tag {
     this.id = id;
   }
 
-  public Tag name(String name) {
+  public Category name(String name) {
     this.name = name;
     return this;
   }
@@ -78,9 +78,9 @@ public class Tag {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Tag tag = (Tag) o;
-    return Objects.equals(this.id, tag.id) &&
-        Objects.equals(this.name, tag.name);
+    Category category = (Category) o;
+    return Objects.equals(this.id, category.id) &&
+        Objects.equals(this.name, category.name);
   }
 
   @Override
@@ -92,7 +92,7 @@ public class Tag {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Tag {\n");
+    sb.append("class Category {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");

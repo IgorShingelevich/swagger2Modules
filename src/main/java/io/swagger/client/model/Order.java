@@ -19,41 +19,35 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.client.model.Category;
-import io.swagger.client.model.Tag;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import org.threeten.bp.OffsetDateTime;
 /**
- * Pet
+ * Order
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T17:52:51.549977600+03:00[Europe/Moscow]")
-public class Pet {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T19:29:48.859641800+03:00[Europe/Moscow]")
+public class Order {
   @SerializedName("id")
   private Long id = null;
 
-  @SerializedName("category")
-  private Category category = null;
+  @SerializedName("petId")
+  private Long petId = null;
 
-  @SerializedName("name")
-  private String name = null;
+  @SerializedName("quantity")
+  private Integer quantity = null;
 
-  @SerializedName("photoUrls")
-  private List<String> photoUrls = new ArrayList<String>();
-
-  @SerializedName("tags")
-  private List<Tag> tags = null;
+  @SerializedName("shipDate")
+  private OffsetDateTime shipDate = null;
 
   /**
-   * pet status in the store
+   * Order Status
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
-    AVAILABLE("available"),
-    PENDING("pending"),
-    SOLD("sold");
+    PLACED("placed"),
+    APPROVED("approved"),
+    DELIVERED("delivered");
 
     private String value;
 
@@ -91,7 +85,10 @@ public class Pet {
   }  @SerializedName("status")
   private StatusEnum status = null;
 
-  public Pet id(Long id) {
+  @SerializedName("complete")
+  private Boolean complete = null;
+
+  public Order id(Long id) {
     this.id = id;
     return this;
   }
@@ -109,107 +106,94 @@ public class Pet {
     this.id = id;
   }
 
-  public Pet category(Category category) {
-    this.category = category;
+  public Order petId(Long petId) {
+    this.petId = petId;
     return this;
   }
 
    /**
-   * Get category
-   * @return category
+   * Get petId
+   * @return petId
   **/
   @Schema(description = "")
-  public Category getCategory() {
-    return category;
+  public Long getPetId() {
+    return petId;
   }
 
-  public void setCategory(Category category) {
-    this.category = category;
+  public void setPetId(Long petId) {
+    this.petId = petId;
   }
 
-  public Pet name(String name) {
-    this.name = name;
+  public Order quantity(Integer quantity) {
+    this.quantity = quantity;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
-  **/
-  @Schema(example = "doggie", required = true, description = "")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Pet photoUrls(List<String> photoUrls) {
-    this.photoUrls = photoUrls;
-    return this;
-  }
-
-  public Pet addPhotoUrlsItem(String photoUrlsItem) {
-    this.photoUrls.add(photoUrlsItem);
-    return this;
-  }
-
-   /**
-   * Get photoUrls
-   * @return photoUrls
-  **/
-  @Schema(required = true, description = "")
-  public List<String> getPhotoUrls() {
-    return photoUrls;
-  }
-
-  public void setPhotoUrls(List<String> photoUrls) {
-    this.photoUrls = photoUrls;
-  }
-
-  public Pet tags(List<Tag> tags) {
-    this.tags = tags;
-    return this;
-  }
-
-  public Pet addTagsItem(Tag tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<Tag>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-   /**
-   * Get tags
-   * @return tags
+   * Get quantity
+   * @return quantity
   **/
   @Schema(description = "")
-  public List<Tag> getTags() {
-    return tags;
+  public Integer getQuantity() {
+    return quantity;
   }
 
-  public void setTags(List<Tag> tags) {
-    this.tags = tags;
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
   }
 
-  public Pet status(StatusEnum status) {
+  public Order shipDate(OffsetDateTime shipDate) {
+    this.shipDate = shipDate;
+    return this;
+  }
+
+   /**
+   * Get shipDate
+   * @return shipDate
+  **/
+  @Schema(description = "")
+  public OffsetDateTime getShipDate() {
+    return shipDate;
+  }
+
+  public void setShipDate(OffsetDateTime shipDate) {
+    this.shipDate = shipDate;
+  }
+
+  public Order status(StatusEnum status) {
     this.status = status;
     return this;
   }
 
    /**
-   * pet status in the store
+   * Order Status
    * @return status
   **/
-  @Schema(description = "pet status in the store")
+  @Schema(description = "Order Status")
   public StatusEnum getStatus() {
     return status;
   }
 
   public void setStatus(StatusEnum status) {
     this.status = status;
+  }
+
+  public Order complete(Boolean complete) {
+    this.complete = complete;
+    return this;
+  }
+
+   /**
+   * Get complete
+   * @return complete
+  **/
+  @Schema(description = "")
+  public Boolean isComplete() {
+    return complete;
+  }
+
+  public void setComplete(Boolean complete) {
+    this.complete = complete;
   }
 
 
@@ -221,32 +205,32 @@ public class Pet {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Pet pet = (Pet) o;
-    return Objects.equals(this.id, pet.id) &&
-        Objects.equals(this.category, pet.category) &&
-        Objects.equals(this.name, pet.name) &&
-        Objects.equals(this.photoUrls, pet.photoUrls) &&
-        Objects.equals(this.tags, pet.tags) &&
-        Objects.equals(this.status, pet.status);
+    Order order = (Order) o;
+    return Objects.equals(this.id, order.id) &&
+        Objects.equals(this.petId, order.petId) &&
+        Objects.equals(this.quantity, order.quantity) &&
+        Objects.equals(this.shipDate, order.shipDate) &&
+        Objects.equals(this.status, order.status) &&
+        Objects.equals(this.complete, order.complete);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, category, name, photoUrls, tags, status);
+    return Objects.hash(id, petId, quantity, shipDate, status, complete);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Pet {\n");
+    sb.append("class Order {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    category: ").append(toIndentedString(category)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    photoUrls: ").append(toIndentedString(photoUrls)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    petId: ").append(toIndentedString(petId)).append("\n");
+    sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
+    sb.append("    shipDate: ").append(toIndentedString(shipDate)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    complete: ").append(toIndentedString(complete)).append("\n");
     sb.append("}");
     return sb.toString();
   }

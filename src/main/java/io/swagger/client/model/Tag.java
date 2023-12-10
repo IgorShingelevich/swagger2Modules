@@ -22,72 +22,51 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
- * ModelApiResponse
+ * Tag
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T17:52:51.549977600+03:00[Europe/Moscow]")
-public class ModelApiResponse {
-  @SerializedName("code")
-  private Integer code = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-12-10T19:29:48.859641800+03:00[Europe/Moscow]")
+public class Tag {
+  @SerializedName("id")
+  private Long id = null;
 
-  @SerializedName("type")
-  private String type = null;
+  @SerializedName("name")
+  private String name = null;
 
-  @SerializedName("message")
-  private String message = null;
-
-  public ModelApiResponse code(Integer code) {
-    this.code = code;
+  public Tag id(Long id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get code
-   * @return code
+   * Get id
+   * @return id
   **/
   @Schema(description = "")
-  public Integer getCode() {
-    return code;
+  public Long getId() {
+    return id;
   }
 
-  public void setCode(Integer code) {
-    this.code = code;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public ModelApiResponse type(String type) {
-    this.type = type;
+  public Tag name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get type
-   * @return type
+   * Get name
+   * @return name
   **/
   @Schema(description = "")
-  public String getType() {
-    return type;
+  public String getName() {
+    return name;
   }
 
-  public void setType(String type) {
-    this.type = type;
-  }
-
-  public ModelApiResponse message(String message) {
-    this.message = message;
-    return this;
-  }
-
-   /**
-   * Get message
-   * @return message
-  **/
-  @Schema(description = "")
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -99,26 +78,24 @@ public class ModelApiResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ModelApiResponse _apiResponse = (ModelApiResponse) o;
-    return Objects.equals(this.code, _apiResponse.code) &&
-        Objects.equals(this.type, _apiResponse.type) &&
-        Objects.equals(this.message, _apiResponse.message);
+    Tag tag = (Tag) o;
+    return Objects.equals(this.id, tag.id) &&
+        Objects.equals(this.name, tag.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, type, message);
+    return Objects.hash(id, name);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ModelApiResponse {\n");
+    sb.append("class Tag {\n");
     
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

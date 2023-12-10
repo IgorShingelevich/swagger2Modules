@@ -12,23 +12,23 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <swagger.codegen.version>3.0.29</swagger.codegen.version>
         <gson.version>2.10.1</gson.version>
-        <okhttp.version>4.12.0</okhttp.version>
-        <okhttp.logging-interceptor.version>4.12.0</okhttp.logging-interceptor.version>
-        <jgson-fire.version>1.9.0</jgson-fire.version>
-        <threetenbp.version>1.5.1</threetenbp.version>
         <javax.annotation-api.version>1.3.2</javax.annotation-api.version>
-        <swagger-annotations.version>2.2.9</swagger-annotations.version>
+        <jgson-fire.version>1.9.0</jgson-fire.version>
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
         <maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <okhttp.version>4.12.0</okhttp.version>
+        <okhttp.logging-interceptor.version>4.12.0</okhttp.logging-interceptor.version>
+        <oltu.oauth2.client.version>1.0.2</oltu.oauth2.client.version>
         <retrofit2.version>2.9.0</retrofit2.version>
+        <swagger.codegen.version>3.0.29</swagger.codegen.version>
+        <swagger-annotations.version>2.2.9</swagger-annotations.version>
+        <threetenbp.version>1.5.1</threetenbp.version>
     </properties>
 
     <dependencies>
-
-
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -70,6 +70,7 @@
             <artifactId>gson-fire</artifactId>
             <version>${jgson-fire.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -81,27 +82,27 @@
             <artifactId>retrofit</artifactId>
             <version>${retrofit2.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-scalars</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.oltu.oauth2</groupId>
+            <artifactId>org.apache.oltu.oauth2.client</artifactId>
+            <version>${oltu.oauth2.client.version}</version>
+        </dependency>
 
 
     </dependencies>
 
     <build>
         <plugins>
-
-            <!-- Maven Clean Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven-clean-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>pre-clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <groupId>io.swagger.codegen.v3</groupId>
@@ -119,7 +120,6 @@
                             <output>${project.build.directory}/generated-sources/petStoreClassic</output>
                             <generateModels>true</generateModels>
                             <generateApis>true</generateApis>
-
                             <generateApiTests>false</generateApiTests>
                             <generateApiDocumentation>false</generateApiDocumentation>
                             <generateModelTests>false</generateModelTests>
@@ -130,50 +130,6 @@
                             </configOptions>
                         </configuration>
                     </execution>
-<!--                    <execution>-->
-<!--                        <id>petstore-extended-codegen</id>-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <language>java</language>-->
-<!--                            <inputSpec>https://petstore3.swagger.io/api/v3/openapi.json</inputSpec>-->
-<!--                            <output>${project.build.directory}/generated-sources/petStoreExtended</output>-->
-<!--                            <generateModels>true</generateModels>-->
-<!--                            <generateApis>true</generateApis>-->
-<!--                            <generateApiTests>false</generateApiTests>-->
-<!--                            <generateApiDocumentation>false</generateApiDocumentation>-->
-<!--                            <generateModelTests>false</generateModelTests>-->
-<!--                            <generateModelDocumentation>false</generateModelDocumentation>-->
-<!--                            <generateSupportingFiles>true</generateSupportingFiles>-->
-<!--                            <configOptions>-->
-<!--                                <library>retrofit2</library>-->
-<!--                            </configOptions>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>twitter-codegen</id>-->
-<!--                        <phase>generate-sources</phase> &lt;!&ndash; Ensure this is set &ndash;&gt;-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <language>java</language>-->
-<!--                            <inputSpec>https://api.twitter.com/labs/2/openapi.json</inputSpec>-->
-<!--                            <output>${project.build.directory}/generated-sources/twitter</output>-->
-<!--                            <generateModels>true</generateModels>-->
-<!--                            <generateApis>true</generateApis>-->
-<!--                            <generateApiTests>false</generateApiTests>-->
-<!--                            <generateApiDocumentation>false</generateApiDocumentation>-->
-<!--                            <generateModelTests>false</generateModelTests>-->
-<!--                            <generateModelDocumentation>false</generateModelDocumentation>-->
-<!--                            <generateSupportingFiles>true</generateSupportingFiles>-->
-<!--                            <configOptions>-->
-<!--                                <library>retrofit2</library>-->
-<!--                                &lt;!&ndash; Additional config options can be specified here &ndash;&gt;-->
-<!--                            </configOptions>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
                 </executions>
             </plugin>
 
@@ -190,10 +146,13 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/src/main/java/apiGenerated</outputDirectory>
+                            <!--                            io.swagger.client-->
+                            <outputDirectory>${basedir}/src/main/java/io/swagger/client</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.build.directory}/generated-sources</directory>
+                                    <directory>
+                                        ${project.build.directory}/generated-sources//petStoreClassic/src/main/java/io/swagger/client
+                                    </directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
@@ -201,6 +160,91 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Maven Replacer Plugin -->
+            <!--            <plugin>-->
+            <!--                <groupId>com.google.code.maven-replacer-plugin</groupId>-->
+            <!--                <artifactId>replacer</artifactId>-->
+            <!--                <version>1.4.1</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <phase>process-sources</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>replace</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <includes>-->
+            <!--                                <include>**/apiGenerated/api/*.java</include>-->
+            <!--                                <include>**/apiGenerated/auth/*.java</include>-->
+            <!--                                <include>**/apiGenerated/model/*.java</include>-->
+            <!--                                <include>**/apiGenerated/*.java</include>-->
+            <!--                            </includes>-->
+            <!--                            <replacements>-->
+            <!--                                <replacement>-->
+            <!--                                    <token>package io.swagger.client.api;</token>-->
+            <!--                                    <value>package apiGenerated.api;</value>-->
+            <!--                                </replacement>-->
+            <!--                                <replacement>-->
+            <!--                                    <token>package io.swagger.client.auth;</token>-->
+            <!--                                    <value>package apiGenerated.auth;</value>-->
+            <!--                                </replacement>-->
+            <!--                                <replacement>-->
+            <!--                                    <token>package io.swagger.client.model;</token>-->
+            <!--                                    <value>package apiGenerated.model;</value>-->
+            <!--                                </replacement>-->
+            <!--                                <replacement>-->
+            <!--                                    <token>package io.swagger.client;</token>-->
+            <!--                                    <value>package apiGenerated;</value>-->
+            <!--                                </replacement>-->
+            <!--                            </replacements>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
+
+            <!-- Maven Compile Plugin -->
+            <!--  <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>${maven-compiler-plugin.version}</version>
+                  <configuration>
+                      <source>11</source>
+                      <target>11</target>
+                      <excludes>
+                          <exclude>**/generated-sources/**</exclude>
+                      </excludes>
+                  </configuration>
+              </plugin>-->
+
+
+            <!-- Maven Clean Plugin - Define only once with multiple executions if needed -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+                <executions>
+                    <!-- Execution to clean generated sources before the package phase -->
+                    <execution>
+                        <id>clean-generated-sources</id>
+                        <phase>validate</phase> <!-- This phase runs before compile -->
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <filesets>
+                                <!--<fileset>
+                                    <directory>${basedir}/target/generated-sources/petStoreClassic</directory>
+                                    <includes>
+                                        <include>**/*</include>
+                                    </includes>
+                                </fileset>-->
+                            </filesets>
+                        </configuration>
+                    </execution>
+                    <!-- If you need other cleaning operations, add them as additional executions here -->
+                </executions>
+            </plugin>
+
 
         </plugins>
     </build>
