@@ -124,6 +124,7 @@
                 <groupId>io.swagger.codegen.v3</groupId>
                 <artifactId>swagger-codegen-maven-plugin</artifactId>
                 <version>${swagger.codegen.version}</version>
+
                 <executions>
                     <execution>
                         <id>petstore-classic-codegen</id>
@@ -148,8 +149,9 @@
                             </configOptions>
                         </configuration>
                     </execution>
+
                     <execution>
-                        <id>adobeSwagger</id>
+                        <id>adobeSwagger-codegen</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
