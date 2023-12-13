@@ -1,11 +1,11 @@
-import io.swagger.client.ApiClient;
-import io.swagger.client.api.PetApi;
-import io.swagger.client.model.Pet;
+import io.swagger.client.api.ApiClient;
+import io.swagger.client.api.petStoreClassicApi.PetApi;
+import io.swagger.client.model.petStoreClassicModel.Pet;
 import org.junit.jupiter.api.Test;
 import retrofit2.Call;
 
 public class MyTest {
-   private final  ApiClient apiClient = new ApiClient();
+   private final ApiClient apiClient = new ApiClient();
 
 
     @Test
