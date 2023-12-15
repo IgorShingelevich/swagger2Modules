@@ -92,32 +92,7 @@
     <build>
         <plugins>
 
-            <!-- Maven Clean Plugin - Define only once with multiple executions if needed -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven-clean-plugin.version}</version>
-                <executions>
-                    <!-- Execution to clean generated sources before the package phase -->
-                    <execution>
-                        <id>clean-generated-sources</id>
-                        <phase>clean</phase> <!-- This phase runs before compile -->
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                        <configuration>
-                            <filesets>
-                                <!--<fileset>
-                                    <directory>${basedir}/target/generated-sources/petStoreClassic</directory>
-                                    <includes>
-                                        <include>**/*</include>
-                                    </includes>
-                                </fileset>-->
-                            </filesets>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
 
 <!--            Maven-swagger-codegen plugin-->
             <plugin>
@@ -135,14 +110,15 @@
                             <language>java</language>
                             <inputSpec>https://petstore.swagger.io/v2/swagger.json</inputSpec>
                             <output>${project.build.directory}/generated-sources/petStoreClassic</output>
-                            <modelPackage>io.swagger.client.model.petStoreClassicModel</modelPackage>
                             <apiPackage>io.swagger.client.api.petStoreClassicApi</apiPackage>
+                            <modelPackage>io.swagger.client.model.petStoreClassicModel</modelPackage>
+                            <invokerPackage>io.swagger.client.service.petStoreService</invokerPackage>
                             <generateModels>true</generateModels>
                             <generateApis>true</generateApis>
-                            <generateApiTests>false</generateApiTests>
-                            <generateApiDocumentation>false</generateApiDocumentation>
-                            <generateModelTests>false</generateModelTests>
-                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateApiTests>true</generateApiTests>
+                            <generateModelTests>true</generateModelTests>
+                            <generateApiDocumentation>true</generateApiDocumentation>
+                            <generateModelDocumentation>true</generateModelDocumentation>
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <configOptions>
                                 <library>retrofit2</library>
@@ -151,21 +127,22 @@
                     </execution>
 
                     <execution>
-                        <id>adobeSwagger-codegen</id>
+                        <id>adobe-codegen</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <language>java</language>
                             <inputSpec>https://api.apis.guru/v2/specs/adobe.com/aem/3.7.1-pre.0/openapi.json</inputSpec>
-                            <output>${project.build.directory}/generated-sources/adobeSwagger</output>
-                            <modelPackage>io.swagger.client.model.adobeSwaggerModel</modelPackage>
-                            <apiPackage>io.swagger.client.api.adobeSwaggerApi</apiPackage>
+                            <output>${project.build.directory}/generated-sources/adobe</output>
+                            <apiPackage>io.swagger.client.api.adobeApi</apiPackage>
+                            <modelPackage>io.swagger.client.model.adobeModel</modelPackage>
+                            <invokerPackage>io.swagger.client.service.adobeService</invokerPackage>
                             <generateModels>true</generateModels>
                             <generateApis>true</generateApis>
-                            <generateApiTests>false</generateApiTests>
-                            <generateApiDocumentation>false</generateApiDocumentation>
-                            <generateModelTests>false</generateModelTests>
+                            <generateApiTests>true</generateApiTests>
+                            <generateModelTests>true</generateModelTests>
+                            <generateApiDocumentation>true</generateApiDocumentation>
                             <generateModelDocumentation>false</generateModelDocumentation>
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <configOptions>
@@ -219,7 +196,7 @@
                             <resources>
                                 <resource>
                                     <directory>
-                                        ${project.build.directory}/generated-sources/adobeSwagger/src/main/java
+                                        ${project.build.directory}/generated-sources/adobe/src/main/java
                                     </directory>
                                     <filtering>false</filtering>
                                     <includes>
@@ -286,6 +263,33 @@
                       </excludes>
                   </configuration>
               </plugin>-->
+
+            <!-- Maven Clean Plugin - Define only once with multiple executions if needed -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${maven-clean-plugin.version}</version>
+                <executions>
+                    <!-- Execution to clean generated sources before the package phase -->
+                    <execution>
+                        <id>clean-generated-sources</id>
+                        <phase>initialize</phase> <!-- This phase runs before compile -->
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <filesets>
+                                <!--<fileset>
+                                    <directory>${basedir}/target/generated-sources/petStoreClassic</directory>
+                                    <includes>
+                                        <include>**/*</include>
+                                    </includes>
+                                </fileset>-->
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
 
         </plugins>
